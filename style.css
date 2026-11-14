@@ -1,0 +1,374 @@
+
+:root {
+  --latar-atas:   #6f0152;   /* ungu tua */
+  --latar-bawah:  #c70060;   /* ungu agak terang */
+  --kuning:       #f7ff11;
+  --pink:         #ff7a8a;
+  --mint:         #5ed4c4;
+  --putih:        #fff8f0;
+  --teks-gelap:   #3a2a5c;
+
+  --font-judul:   'Pacifico', cursive;
+  --font-isi:     'Nunito', Arial, sans-serif;
+}
+
+
+/* ---------- 2. PENGATURAN DASAR ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-isi);
+  color: var(--putih);
+  background: linear-gradient(180deg, var(--latar-atas), var(--latar-bawah));
+  background-attachment: fixed;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+h2 {
+  font-family: var(--font-judul);
+  font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+/* ---------- 3. BAGIAN JUDUL ---------- */
+.judul-utama {
+  text-align: center;
+  padding: 70px 20px 40px;
+  animation: muncul 1.2s ease-out;
+}
+
+.sapaan {
+  font-size: 1.1rem;
+  color: var(--mint);
+  font-weight: 600;
+}
+
+.judul-utama h1 {
+  font-family: var(--font-judul);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 7vw, 4rem);   /* otomatis mengecil di HP */
+  color: var(--kuning);
+  line-height: 1.3;
+  margin: 10px 0;
+  text-shadow: 0 0 20px rgba(255, 209, 102, 0.5);
+}
+
+.tanggal {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* Kue + api lilin */
+.kue {
+  position: relative;
+  display: inline-block;
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.kue-emoji {
+  display: inline-block;
+  animation: loncat 2s ease-in-out infinite;
+}
+
+.api {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  animation: api-berkedip 0.6s ease-in-out infinite alternate;
+}
+
+
+/* ---------- 4. KARTU PESAN & HARAPAN ---------- */
+.kartu {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 35px 30px;
+  background: var(--putih);
+  color: var(--teks-gelap);
+  border-radius: 24px;
+  border: 4px solid var(--pink);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.kartu h2 {
+  color: var(--pink);
+}
+
+.kartu p {
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.kartu p:last-child {
+  margin-bottom: 0;
+}
+
+.harapan {
+  border-color: var(--mint);
+}
+
+.harapan h2 {
+  color: #2aa898;
+}
+
+.harapan ul {
+  list-style: none;
+}
+
+.harapan li {
+  padding: 10px 0 10px 36px;
+  position: relative;
+  font-size: 1.05rem;
+}
+
+/* Bintang kecil sebagai pengganti titik daftar */
+.harapan li::before {
+  content: "★";
+  position: absolute;
+  left: 4px;
+  color: var(--kuning);
+  font-size: 1.3rem;
+  text-shadow: 0 0 1px #c9941a;
+}
+
+
+/* ---------- 5. GALERI FOTO (3 WADAH) ---------- */
+.galeri {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.galeri h2 {
+  color: var(--kuning);
+}
+
+.galeri-isi {
+  display: flex;
+  flex-wrap: wrap;          /* di HP otomatis turun ke bawah */
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Satu wadah foto */
+.foto-wadah {
+  position: relative;
+  width: 280px;
+  padding: 14px 14px 10px;
+  background: var(--putih);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s;
+}
+
+/* Kemiringan tiap foto (hapus kalau ingin lurus) */
+.foto-wadah:nth-child(1) { transform: rotate(-4deg); }
+.foto-wadah:nth-child(2) { transform: rotate(3deg); }
+.foto-wadah:nth-child(3) { transform: rotate(-2deg); }
+
+.foto-wadah:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* Foto yang kamu masukkan */
+.foto-wadah img {
+  display: block;
+  position: relative;       /* supaya menutupi tulisan "Taruh foto di sini" */
+  z-index: 1;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;        /* foto dipotong rapi, tidak gepeng */
+  border-radius: 6px;
+}
+
+/* Kotak kosong (terlihat kalau foto belum dimasukkan) */
+.foto-kosong {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #9a8bb8;
+  font-weight: 600;
+  line-height: 1.5;
+  background: #efe8fa;
+  border: 3px dashed #b9a8dd;
+  border-radius: 6px;
+}
+
+.foto-wadah figcaption {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--teks-gelap);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+
+/* ---------- 6. PENUTUP ---------- */
+.penutup {
+  text-align: center;
+  padding: 40px 20px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.tiup {
+  font-size: 1.2rem;
+  color: var(--kuning);
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.tanda-tangan {
+  font-size: 1.1rem;
+}
+
+
+/* ---------- 7. HIASAN LATAR ---------- */
+.hiasan {
+  position: fixed;
+  inset: 0;                 /* menutupi seluruh layar */
+  pointer-events: none;     /* supaya tidak menghalangi klik */
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* --- Balon --- */
+.balon {
+  position: absolute;
+  bottom: -150px;
+  width: 60px;
+  height: 75px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0.85;
+  animation: balon-naik 14s linear infinite;
+}
+
+/* Tali balon */
+.balon::after {
+  content: "";
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  width: 2px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.balon-1 { left: 5%;  background: var(--pink);   animation-delay: 0s; }
+.balon-2 { left: 25%; background: var(--kuning); animation-delay: 4s;  animation-duration: 17s; }
+.balon-3 { left: 50%; background: var(--mint);   animation-delay: 8s; }
+.balon-4 { left: 72%; background: var(--pink);   animation-delay: 2s;  animation-duration: 16s; }
+.balon-5 { left: 90%; background: var(--kuning); animation-delay: 6s;  animation-duration: 13s; }
+
+/* --- Bintang berkelip --- */
+.bintang {
+  position: absolute;
+  color: var(--kuning);
+  font-size: 1.5rem;
+  animation: berkelip 2.5s ease-in-out infinite;
+}
+
+.bintang-1 { top: 8%;  left: 12%; }
+.bintang-2 { top: 20%; left: 85%; animation-delay: 0.8s; }
+.bintang-3 { top: 55%; left: 6%;  animation-delay: 1.5s; }
+.bintang-4 { top: 70%; left: 92%; animation-delay: 0.4s; }
+
+/* --- Konfeti jatuh --- */
+.konfeti {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 14px;
+  animation: konfeti-jatuh 8s linear infinite;
+}
+
+.konfeti-1 { left: 8%;  background: var(--pink);   animation-delay: 0s; }
+.konfeti-2 { left: 20%; background: var(--kuning); animation-delay: 2s; }
+.konfeti-3 { left: 33%; background: var(--mint);   animation-delay: 4s; }
+.konfeti-4 { left: 46%; background: var(--pink);   animation-delay: 1s; }
+.konfeti-5 { left: 59%; background: var(--kuning); animation-delay: 5s; }
+.konfeti-6 { left: 72%; background: var(--mint);   animation-delay: 3s; }
+.konfeti-7 { left: 84%; background: var(--pink);   animation-delay: 6s; }
+.konfeti-8 { left: 95%; background: var(--kuning); animation-delay: 2.5s; }
+
+
+/* ---------- 8. ANIMASI ---------- */
+/* Judul muncul pelan dari bawah saat halaman dibuka */
+@keyframes muncul {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Kue naik turun */
+@keyframes loncat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* Api lilin bergoyang */
+@keyframes api-berkedip {
+  from { transform: translateX(-50%) scale(1) rotate(-4deg); }
+  to   { transform: translateX(-50%) scale(1.15) rotate(4deg); }
+}
+
+/* Balon naik dari bawah ke atas layar */
+@keyframes balon-naik {
+  0%   { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-60vh) translateX(25px); }
+  100% { transform: translateY(-120vh) translateX(-15px); }
+}
+
+/* Bintang berkelip */
+@keyframes berkelip {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%      { opacity: 1;   transform: scale(1.3); }
+}
+
+/* Konfeti jatuh sambil berputar */
+@keyframes konfeti-jatuh {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0.7; }
+}
+
+
+/* ---------- 9. UNTUK LAYAR HP ---------- */
+@media (max-width: 600px) {
+  .kartu {
+    margin: 25px 16px;
+    padding: 28px 22px;
+  }
+
+  .foto-wadah {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+/* ---------- 10. UNTUK PENGGUNA YANG TIDAK NYAMAN DENGAN GERAKAN ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
